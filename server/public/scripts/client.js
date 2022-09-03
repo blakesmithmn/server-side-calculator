@@ -2,16 +2,19 @@ $(document).ready(onReady);
 
 function onReady() {
     console.log('JQ');
-    $('#submitButton').on('click', submitCalculation)
-    $('#addButton').on('click', chooseType)
-    $('#subtractButton').on('click', chooseType)
-    $('#multiplyButton').on('click', chooseType)
-    $('#divideButton').on('click', chooseType)
+    fetchResults(history);
+    $('#submitButton').on('click', submitCalculation);
+    $('#addButton').on('click', chooseType);
+    $('#subtractButton').on('click', chooseType);
+    $('#multiplyButton').on('click', chooseType);
+    $('#divideButton').on('click', chooseType);
+    $('#clearButton').on('click', clearInputs);
 
 }
 
 let operation = 0;
-let history = [];
+// let history = [];
+let calculatorInfo = {};
 function chooseType() {
     operation = $(this).text();
     console.log(operation);
@@ -21,7 +24,7 @@ function chooseType() {
 function submitCalculation() {
     let valueOne = $('#valueOne').val();
     let valueTwo = $('#valueTwo').val();
-    let calculatorInfo = {
+    calculatorInfo = {
         numberOne: valueOne,
         type: operation,
         numberTwo: valueTwo,
@@ -63,4 +66,16 @@ function renderResults(history) {
         $('#result').text(`${last.result}`);
     }
 
+}
+
+function clearInputs() {
+    $('#valueOne').val('');
+    $('#valueTwo').val('');
+    operation = '';
+    calculatorInfo = {
+        numberOne: '',
+        type: '',
+        numberTwo: '',
+        result: '',
+    }
 }
