@@ -6,25 +6,43 @@ app.use(express.static('server/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 // one piece of data on the server - calculations array of objects having a history
 let equation;
+let result;
+let history = [];
 
 
 app.post('/submit', (req, res) => {
     equation = req.body;
     // double check what we are sent on the server
-    console.log(equation);
-    function calculator() {
-        let firstNumber = Number(equation.numberOne);
-        let secondNumber = Number(equation.numberTwo);
-        let result = firstNumber + secondNumber;
-        return result;
-    }
+    calculator(equation);
     console.log(calculator(equation));
-    res.sendStatus(200);
+    res.sendStatus(202);
 });
 
 app.get('/submit', (req, res) => {
 
 })
+
+
+
+console.log(equation);
+function calculator(object) {
+    let firstNumber = Number(object.numberOne);
+    let secondNumber = Number(object.numberTwo);
+    if (object.type === ' - ') {
+        result = firstNumber - secondNumber;
+    }
+    if (object.type === ' + ') {
+        result = firstNumber + secondNumber;
+    }
+    if (object.type === ' x ') {
+        result = firstNumber * secondNumber;
+    }
+    if (object.type === ' / ') {
+        result = firstNumber / secondNumber;
+    }
+    return result;
+}
+console.log(result);
 
 app.listen(PORT, () => {
     console.log(`listening on http://localhost:${PORT}`);
