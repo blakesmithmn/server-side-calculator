@@ -34,5 +34,19 @@ function submitCalculation() {
     }).then(function (results) {
         console.log(results);
     })
+    $('#valueOne').val('');
+    $('#valueTwo').val('');
+    fetchResults();
 }
 
+
+function fetchResults() {
+    $.ajax({
+        method: 'GET',
+        url: '/submit',
+    }).then(function (results) {
+        // making sure we get back an object that makes sense
+        console.log(results);
+
+    })
+}
