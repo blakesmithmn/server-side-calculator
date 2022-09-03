@@ -24,6 +24,7 @@ function submitCalculation() {
         numberOne: valueOne,
         type: operation,
         numberTwo: valueTwo,
+        result: 'empty',
     }
     console.log(calculatorInfo);
     $.ajax({

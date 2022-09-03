@@ -29,20 +29,23 @@ function calculator(object) {
     let firstNumber = Number(object.numberOne);
     let secondNumber = Number(object.numberTwo);
     if (object.type === ' - ') {
-        result = firstNumber - secondNumber;
+        object.result = firstNumber - secondNumber;
     }
     if (object.type === ' + ') {
-        result = firstNumber + secondNumber;
+        object.result = firstNumber + secondNumber;
     }
     if (object.type === ' x ') {
-        result = firstNumber * secondNumber;
+        object.result = firstNumber * secondNumber;
     }
     if (object.type === ' / ') {
-        result = firstNumber / secondNumber;
+        object.result = firstNumber / secondNumber;
+
     }
-    return result;
+    history.push(object);
+    console.log(history);
+    return object;
 }
-console.log(result);
+
 
 app.listen(PORT, () => {
     console.log(`listening on http://localhost:${PORT}`);
