@@ -9,10 +9,12 @@ function onReady() {
     $('#divideButton').on('click', chooseType)
 
 }
+
 let operation = 0;
 function chooseType() {
     operation = $(this).text();
     console.log(operation);
+    return operation;
 }
 
 function submitCalculation() {
@@ -24,4 +26,12 @@ function submitCalculation() {
         numberTwo: valueTwo,
     }
     console.log(calculatorInfo);
+    $.ajax({
+        method: 'POST',
+        url: '/submit',
+        data: calculatorInfo,
+    }).then(function (results) {
+        console.log(results);
+    })
 }
+
