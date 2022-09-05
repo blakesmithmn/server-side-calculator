@@ -10,12 +10,14 @@ function onReady() {
 function clickHandlers() {
     $('.submitButton').on('click', submitCalculation);
     // $('#addButton').on('click', chooseType);
+    $('.decimalButton').on('click', compileNumber);
     $('.number').on('click', compileNumber);
     $('.mathButton').on('click', chooseType);
     // $('#subtractButton').on('click', chooseType);
     // $('#multiplyButton').on('click', chooseType);
     // $('#divideButton').on('click', chooseType);
     $('#clearButton').on('click', clearInputs);
+    $('#onOffButton').on('click', onOff);
 }
 
 // GLOBAL VARIABLES
@@ -25,6 +27,7 @@ let valueTwo = ''; // should get a value from number function
 let mathUsed = false; // toggle true false in number function
 let decimalUsed = false; // toggle true false in number function
 let operator = '';
+let status = 'off';
 let calculatorInfo = {}; // fill this with informaiton to send to server
 /////////////////////////////////
 
@@ -145,5 +148,20 @@ function clearInputs() {
         numberTwo: '',
         result: '',
     }
+}
 
+function onOff(){
+    if (status === 'on'){
+        $('.calculatorDisplay').css('background-color', '#0B0B0B');
+        $('.calculatorDisplay').css('color', '#FFFFFF');
+
+
+        status = 'off';
+
+    } else {
+        $('.calculatorDisplay').css('background-color', '#77CC00');
+        $('.calculatorDisplay').css('color', '#0B0B0B');
+
+        status = 'on';
+    }
 }
