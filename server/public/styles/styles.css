@@ -1,10 +1,16 @@
-#pokemon{
+body {
+    background-color: #F39548;
+}
+
+#pokemon {
     display: flex;
     max-width: 25em;
     position: relative;
     top: 31px;
 }
+
 .flexContainer {
+    background-image: url("poketile.png");
     background-color: #0B0B0B;
     align-items: center;
     display: flex;
@@ -18,18 +24,24 @@
 header {
     display: flex;
     justify-content: center;
+    font-family: pokemon;
+    font-size: 50px;
 }
 
 footer {
     display: flex;
     justify-content: center;
+    font-size: 25px;
+
 }
+
+
 
 #clearHistoryButton {
     display: inline;
 }
 
-#calculator{
+#calculator {
     margin-left: auto;
     margin-right: auto;
     margin-top: 2em;
@@ -90,8 +102,19 @@ footer {
     text-align: right;
     font-size: 3em;
     padding: 0.5em 0.75em;
+    font-family: 'calculator';
 }
 
-#history{
+#history {
     position: absolute right;
+}
+
+@font-face {
+    font-family: 'calculator';
+    src: url('./Calculator.ttf');
+}
+
+@font-face {
+    font-family: 'pokemon';
+    src: url('./Pokemon\ Font.ttf');
 }

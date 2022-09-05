@@ -1,10 +1,8 @@
 $(document).ready(onReady);
 
 function onReady() {
-    console.log('JQ');
     fetchResults(history);
     clickHandlers();
-
 }
 
 function clickHandlers() {
@@ -39,12 +37,14 @@ function compileNumber() {
     if (operator === '') {
         valueOne = valueOne + $(this).attr('id');
         console.log(valueOne);
-        
+
         $('.calculatorDisplay').empty();
         $('.calculatorDisplay').append(valueOne);
     } else {
         valueTwo += $(this).attr('id')
+
         console.log(valueTwo);
+        $('.calculatorDisplay').empty();
         $('.calculatorDisplay').append(valueTwo);
 
     }
@@ -77,6 +77,11 @@ function submitCalculation() {
     //     alert('please enter a full equation');
     //     return;
     // }
+
+    if (valueOne === '' || valueTwo === '' || operator === '') {
+        alert('Press "C" and try again - be sure to enter a valid Mathematical Equation');
+        return;                     //makes it so users have to have all 3 inputs clicked
+    }
     calculatorInfo = {
         numberOne: valueOne,
         type: operator,
@@ -100,7 +105,7 @@ function submitCalculation() {
     mathUsed = false;
     decimalUsed = false;
     operator = '';
-    
+
 }
 
 // function to GET the results from the server side and append
@@ -135,7 +140,7 @@ function clearInputs() {
     // $('#valueOne').val('');
     // $('#valueTwo').val('');
     $('.calculatorDisplay').text('0');
-    
+
     // operation = '';
     valueOne = ''; // should get a value from number function
     valueTwo = ''; // should get a value from number function
@@ -150,8 +155,8 @@ function clearInputs() {
     }
 }
 
-function onOff(){
-    if (status === 'on'){
+function onOff() {
+    if (status === 'on') {
         $('.calculatorDisplay').css('background-color', '#0B0B0B');
         $('.calculatorDisplay').css('color', '#FFFFFF');
 
