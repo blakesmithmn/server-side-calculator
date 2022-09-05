@@ -13,7 +13,11 @@
 </head>
 
 <body>
-    <h1>Calculator</h1>
+
+    <!-- ---------------------------------------
+    START OF BASE MODE  (TURN on if things aren't working ... and turn off stretch)
+--------------------------------------- -->
+    <!-- <h1>Calculator</h1>
     <section class="userInputs">
         <input type="number" placeholder="#" id="valueOne">
         <span class="mathButtons">
@@ -34,36 +38,54 @@
         <ul id="history">
 
         </ul>
+    </section> -->
+
+    <!-- ---------------------------------------
+    END OF BASE MODE  (stretch mode below - turn off if things aren't working)
+    --------------------------------------- -->
+    <header>
+        <h1>Calculator</h1>
+    </header>
+    <container class="flexContainer">
+        <img src="./peekers.png" id="pokemon">
+        <section id="calculator">
+            <div class="calculatorDisplay"> 0</div>
+            <button id="onOffButton">on/off</button>
+            <button id="clearButton"> c </button>
+            <button class="mathButton" id="/">÷</button>
+            <button class="mathButton" id="x">x </button>
+
+            <button class="number" id="7">7</button>
+            <button class="number" id="8">8</button>
+            <button class="number" id="9">9</button>
+            <button class="mathButton" id="-">-</button>
+
+
+            <button class="number" id="4">4</button>
+            <button class="number" id="5">5</button>
+            <button class="number" id="6">6</button>
+            <button class="mathButton" id="+">+</button>
+            <button class="number" id="1">1</button>
+            <button class="number" id="2">2</button>
+            <button class="number" id="3">3</button>
+
+            <button class="twoColumns mathButton" id="=">=</button>
+
+            <button class="twoRows number" id="0">0</button>
+            <button>.</button>
+        </section>
+    </container>
+
+    <section id="history">
+        <h1>History</h1>
     </section>
-
-    <section id="calculatorTest">
-        <button>on/off</button>
-        <button> c </button>
-        <button data-operation>/</button>
-        <button data-operation>x </button>
-
-        <button data-number>7</button>
-        <button data-number>8</button>
-        <button data-number>9</button>
-        <button data-operation>-</button>
+    <footer>
+        <section id="history">
+            <h1>History</h1>
+        </section>
+    </footer>
 
 
-        <button data-number>4</button>
-        <button data-number>5</button>
-        <button data-number>6</button>
-        <button data-operation>>+</button>
-        <button data-number>1</button>
-        <button data-number>2</button>
-        <button data-number>3</button>
-
-        <button class="twoColumns">=</button>
-
-        <button data-number class="twoRows">0</button>
-        <button>.</button>
-        
-        
-
-    </section>
 </body>
 
 </html>

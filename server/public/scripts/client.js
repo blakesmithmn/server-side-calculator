@@ -5,17 +5,36 @@ function onReady() {
     fetchResults(history);
     $('#submitButton').on('click', submitCalculation);
     $('#addButton').on('click', chooseType);
+    $('.number').on('click', compileNumber);
+    $('.mathButton').on('click', chooseType);
     $('#subtractButton').on('click', chooseType);
     $('#multiplyButton').on('click', chooseType);
     $('#divideButton').on('click', chooseType);
     $('#clearButton').on('click', clearInputs);
-
 }
 
+let numberOne = null;
+let numberTwo = null;
+let mathUsed = false;
+let decimalUsed = false;
+function compileNumber() {
+    valueOne=0;
+    if (mathUsed === false) {
+        valueOne += Number($(this).attr('id'));
+        mathUsed = true;
+        console.log(valueOne);
+        $('.calculatorDisplay').append(valueOne);
+
+    }
+}
 let operation = 0;
 // let history = [];
 let calculatorInfo = {};
 function chooseType() {
+    if (mathUsed === false){
+        valueOne = $('.calculatorDisplay').text();
+        console.log(valueOne);
+    }
     operation = $(this).text();
     console.log(operation);
     return operation;
@@ -23,7 +42,7 @@ function chooseType() {
 
 function submitCalculation() {
     let valueOne = $('#valueOne').val();
-    let valueTwo = $('#valueTwo').val();
+    let valueTwo = $('#calculatorScreen').text();
     calculatorInfo = {
         numberOne: valueOne,
         type: operation,
@@ -38,8 +57,8 @@ function submitCalculation() {
     }).then(function (results) {
         console.log(results);
     })
-    $('#valueOne').val('');
-    $('#valueTwo').val('');
+    // $('#valueOne').val('');
+    // $('#valueTwo').val('');
     fetchResults();
 }
 
@@ -69,8 +88,10 @@ function renderResults(history) {
 }
 
 function clearInputs() {
-    $('#valueOne').val('');
-    $('#valueTwo').val('');
+    // $('#valueOne').val('');
+    // $('#valueTwo').val('');
+    $('.calculatorDisplay').text('0');
+
     operation = '';
     calculatorInfo = {
         numberOne: '',
