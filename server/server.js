@@ -32,20 +32,20 @@ function calculator(object) {
     let secondNumber = Number(object.numberTwo);
     // logic to handle the different math equations ... 
     // maybe find a more clean way later?
-    if (object.type === ' - ') {
+    if (object.type === '-') {
         object.result = firstNumber - secondNumber;
         toString(object.result);
     }
-    if (object.type === ' + ') {
+    if (object.type === '+') {
         object.result = firstNumber + secondNumber;
         toString(object.result);
     }
-    if (object.type === ' x ') {
+    if (object.type === 'x') {
         object.result = firstNumber * secondNumber;
         toString(object.result);
 
     }
-    if (object.type === ' / ') {
+    if (object.type === '/') {
         object.result = firstNumber / secondNumber;
         toString(object.result);
 

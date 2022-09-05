@@ -3,52 +3,84 @@ $(document).ready(onReady);
 function onReady() {
     console.log('JQ');
     fetchResults(history);
-    $('#submitButton').on('click', submitCalculation);
-    $('#addButton').on('click', chooseType);
+    clickHandlers();
+
+}
+
+function clickHandlers() {
+    $('.submitButton').on('click', submitCalculation);
+    // $('#addButton').on('click', chooseType);
     $('.number').on('click', compileNumber);
     $('.mathButton').on('click', chooseType);
-    $('#subtractButton').on('click', chooseType);
-    $('#multiplyButton').on('click', chooseType);
-    $('#divideButton').on('click', chooseType);
+    // $('#subtractButton').on('click', chooseType);
+    // $('#multiplyButton').on('click', chooseType);
+    // $('#divideButton').on('click', chooseType);
     $('#clearButton').on('click', clearInputs);
 }
 
-let numberOne = null;
-let numberTwo = null;
-let mathUsed = false;
-let decimalUsed = false;
+// GLOBAL VARIABLES
+//////////////////////////////////
+let valueOne = ''; // should get a value from number function
+let valueTwo = ''; // should get a value from number function
+let mathUsed = false; // toggle true false in number function
+let decimalUsed = false; // toggle true false in number function
+let operator = '';
+let calculatorInfo = {}; // fill this with informaiton to send to server
+/////////////////////////////////
+
+// function that takes numbers input 
+// stop collecting data after an operator is pushed
+// store the given value in the object we are sending to the server
+
 function compileNumber() {
-    valueOne=0;
-    if (mathUsed === false) {
-        valueOne += Number($(this).attr('id'));
-        mathUsed = true;
+    if (operator === '') {
+        valueOne = valueOne + $(this).attr('id');
         console.log(valueOne);
+        
+        $('.calculatorDisplay').empty();
         $('.calculatorDisplay').append(valueOne);
+    } else {
+        valueTwo += $(this).attr('id')
+        console.log(valueTwo);
+        $('.calculatorDisplay').append(valueTwo);
 
     }
 }
-let operation = 0;
-// let history = [];
-let calculatorInfo = {};
+
+
+
 function chooseType() {
-    if (mathUsed === false){
-        valueOne = $('.calculatorDisplay').text();
+    if (operator === '') {
+        // valueOne.slice(0,-1);
+        operator = $(this).attr('id');
+        console.log(operator)
+        $('.calculatorDisplay').append(operator);
+
+        // valueOne = $('.calculatorDisplay').text();
         console.log(valueOne);
+        mathUsed = true;
     }
-    operation = $(this).text();
-    console.log(operation);
-    return operation;
+    // operation = $(this).text();
+    // console.log(operation);
+    return operator;
 }
 
+
+// function to send the object over to server side for calculations
+// should compile the existing object and use a POST request
+// not allow submit if something is missing?
 function submitCalculation() {
-    let valueOne = $('#valueOne').val();
-    let valueTwo = $('#calculatorScreen').text();
+    // if(){
+    //     alert('please enter a full equation');
+    //     return;
+    // }
     calculatorInfo = {
         numberOne: valueOne,
-        type: operation,
+        type: operator,
         numberTwo: valueTwo,
         result: 'empty',
     }
+
     console.log(calculatorInfo);
     $.ajax({
         method: 'POST',
@@ -57,10 +89,19 @@ function submitCalculation() {
     }).then(function (results) {
         console.log(results);
     })
-    // $('#valueOne').val('');
-    // $('#valueTwo').val('');
     fetchResults();
+
+    // empty things for next equation 
+    valueOne = '';
+    valueTwo = '';
+    mathUsed = false;
+    decimalUsed = false;
+    operator = '';
+    
 }
+
+// function to GET the results from the server side and append
+// values should be pulled out to update display and history sections
 
 
 function fetchResults() {
@@ -82,7 +123,7 @@ function renderResults(history) {
             <li> ${history[i].numberOne} ${history[i].type} ${history[i].numberTwo} = ${history[i].result}  </li>
         `);
         console.log('appended');
-        $('#result').text(`${last.result}`);
+        $('.calculatorDisplay').text(`${last.result}`);
     }
 
 }
@@ -91,12 +132,18 @@ function clearInputs() {
     // $('#valueOne').val('');
     // $('#valueTwo').val('');
     $('.calculatorDisplay').text('0');
-
-    operation = '';
+    
+    // operation = '';
+    valueOne = ''; // should get a value from number function
+    valueTwo = ''; // should get a value from number function
+    mathUsed = false; // toggle true false in number function
+    decimalUsed = false; // toggle true false in number function
+    operator = '';
     calculatorInfo = {
         numberOne: '',
         type: '',
         numberTwo: '',
         result: '',
     }
+
 }
