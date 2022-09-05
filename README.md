@@ -22,7 +22,11 @@ Over the course of a weekend - we were tasked with creating a functional calcula
 
 ![](prototype.JPG)
 
+This is the prototype of the assignment - a simple set of inputs and math selectors to function as a calculator. This was easily completed within the first few hours of the assignment - but wasn't visually appealing.
+
 ![](FinalProduct.PNG)
+
+This is the calculator portion of the Final Product - as you can see it is a complete transformation of the structure ... which also required some logic restructuring in the javascript. In order to make it slightly more interesting to me - I added a pokemon theme / color scheme to spice up the assignment!
 
 ## Description & Approach
 ![](flowchart.PNG)
