@@ -54,5 +54,9 @@ This web application is meant to function similar to a calculator in real life:
 4. Press "="
 5. See the answer on the calculator screen OR down below in the history section!
 
+## Developer Notes
+
+Given some more time - or If I were to revisit this project ... I would really like to iron out some of the missing logic for users who may try and 'trick' the calculator. I would also like to improve the formatting of the history section so that it is more easily accessible to the user. 
+
 ## Acknowledgement
 Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality. (Thank your people)
